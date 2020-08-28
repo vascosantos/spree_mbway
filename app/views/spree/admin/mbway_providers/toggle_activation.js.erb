@@ -1,0 +1,6 @@
+<% if @success %>
+  $('#active-status-<%= @mbway_provider.id %>').text('<%= mbway_provider_status(@mbway_provider) %>')
+  $('a[href="<%= toggle_activation_admin_mbway_provider_path(@mbway_provider) %>"]').text('<%= action_to_toggle_mbway_provider_status(@mbway_provider) %>')
+<% else %>
+  alert('<%= @mbway_provider.errors.full_messages.to_sentence %>')
+<% end %>

@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:edit_mbway_provider) %>
+<% end %>
+
+<div data-hook="admin_mbway_provider_edit_form">
+  <%= form_for [:admin, @mbway_provider] do |f| %>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+
+    <div data-hook="admin_mbway_provider_edit_form_buttons">
+      <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+    </div>
+  <% end %>
+</div>

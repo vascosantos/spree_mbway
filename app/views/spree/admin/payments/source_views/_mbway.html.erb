@@ -1,0 +1,14 @@
+<fieldset data-hook="mbway">
+  <legend align="center"><%= Spree.t(:transaction, :scope => :mbway) %></legend>
+
+  <div class="row">
+    <div class="alpha six columns">
+      <table class="table table-condensed table-bordered">
+        <tr>
+          <th><%= Spree.t(:amount, :scope => :mbway) %>:</th>
+          <td><%= payment.display_amount.to_html %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</fieldset>

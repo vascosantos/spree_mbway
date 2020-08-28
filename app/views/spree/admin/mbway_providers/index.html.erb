@@ -1,0 +1,31 @@
+<%= render :partial => 'spree/admin/shared/sub_menu/configuration' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_mbway_providers) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_mbway_provider), new_admin_mbway_provider_path, :class => "btn-success", :icon => 'add', :id => 'admin_new_mbway_provider_link'%>
+<% end %>
+
+<%= paginate @mbway_providers %>
+
+<table class='table' id="listing_mbway_providers" data-hook>
+  <thead>
+    <th><%= sort_link @search, :name, Spree.t(:mbway_provider_name) %></th>
+    <th><%= sort_link @search, :key, Spree.t(:mbway_provider_key) %></th>
+    <th><%= sort_link @search, :active, Spree.t(:mbway_provider_active) %></th>
+  </thead>
+
+  <tbody>
+    <% @mbway_providers.each do |provider| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="align-center"><%= provider.name %></td>
+        <td class="align-center"><%= provider.key %></td>
+        <td class="align-center" id='active-status-<%= provider.id %>'><%= mbway_provider_status(provider) %></td>
+        <td class="actions"><%= link_to action_to_toggle_mbway_provider_status(provider), toggle_activation_admin_mbway_provider_path(provider), :remote => true, :method => :put %></td>
+        <td class="actions"><%= link_to_edit provider, :no_text => true, :class => 'edit' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

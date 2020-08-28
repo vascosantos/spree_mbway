@@ -1,0 +1,20 @@
+<div data-hook="admin_inside_mbway_provider_form" class="row">
+  <div class="col-md-6">
+    <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.label :name, Spree.t(:mbway_provider_name) %> <span class="required">*</span>
+      <%= f.text_field :name, :class => 'form-control' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+
+    <%= f.field_container :key, class: ['form-group'] do %>
+      <%= f.label :key, Spree.t(:mbway_provider_key) %> <span class="required">*</span>
+      <%= f.text_field :key, :class => 'form-control' %>
+    <% end %>
+
+    <%= f.field_container :active, class: ['form-group'] do %>
+      <%= f.check_box :active %>
+      <%= f.label :active, Spree.t(:mbway_provider_active) %>
+    <% end %>
+
+  </div>
+</div>
