@@ -7,7 +7,7 @@ require 'spree_mbway/version'
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_mbway'
-  s.version     = SpreeMbway.version
+  s.version     = SpreeMBWay.version
   s.summary     = 'Add extension summary here'
   s.description = 'Add (optional) extension description here'
   s.required_ruby_version = '>= 2.2.7'

@@ -1,7 +1,7 @@
-module SpreeMbway
+module SpreeMBWay
   module_function
 
-  # Returns the version of the currently loaded SpreeMbway as a
+  # Returns the version of the currently loaded SpreeMBWay as a
   # <tt>Gem::Version</tt>.
   def version
     Gem::Version.new VERSION::STRING

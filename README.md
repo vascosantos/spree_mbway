@@ -1,4 +1,4 @@
-# SpreeMbway
+# SpreeMBWay
 
 Introduction goes here.
 

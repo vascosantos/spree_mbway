@@ -1,4 +1,4 @@
-module SpreeMbway
+module SpreeMBWay
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree
@@ -13,6 +13,10 @@ module SpreeMbway
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
+    end
+
+    initializer "spree.register.mbway_payment_method", after: 'spree.register.payment_methods' do |app|
+      app.config.spree.payment_methods << Spree::PaymentMethod::MBWay
     end
 
     config.to_prepare(&method(:activate).to_proc)
