@@ -7,7 +7,7 @@ module Decorators::Api::V1::PaymentsControllerDecorator
 
   def capture_mbway_payment
     find_order_and_payment
-    if @payment && params[:referencia] == @payment.multibanco_reference && params[:valor].to_d == @payment.amount && params[:entidade] == @multibanco_provider.entity
+    if @payment && @order && params[:referencia] == @order.number && params[:valor].to_d == @payment.amount && params[:idpedido] == @payment.mbway_request_code
       @order.resume! if @order.state == "canceled"
       capture
       ## Send push notification
@@ -27,18 +27,18 @@ module Decorators::Api::V1::PaymentsControllerDecorator
         ## Only send paid email
         @order.send_paid_email if @order.respond_to?(:send_paid_email)
       end
+      head :ok
     else
-      not_found
+      head :not_found
     end
   end
 
   private
 
     def find_order_and_payment
-      @payment = Spree::PaymentMethod.find_by_type("Spree::PaymentMethod::MBWay").payments.where(number: params[:referencia], amount: params[:valor].to_d, state: ['pending', 'checkout']).last
-      if @payment
-        @multibanco_provider = @payment.multibanco_provider
-        @order = @payment.order
+      @order = Spree::Order.find_by_number(params[:referencia])
+      if @order
+        @payment = @order.payments.where(mbway_request_code: params[:idpedido]).last
         authorize! :read, @order, order_token
       end
     end

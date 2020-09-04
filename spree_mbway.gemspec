@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core'
+  s.add_dependency 'rest-client'
 end
