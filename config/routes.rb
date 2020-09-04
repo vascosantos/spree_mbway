@@ -4,9 +4,10 @@ Spree::Core::Engine.add_routes do
       put :toggle_activation, :on => :member
     end
   end
+  
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :payments do
+      resources :payments, only: [] do
         get 'capture_mbway_payment', on: :collection
       end
     end
