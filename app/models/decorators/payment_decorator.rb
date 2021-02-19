@@ -15,7 +15,7 @@ module Decorators::PaymentDecorator
     if self.payment_method.type == 'Spree::PaymentMethod::MBWay'
       response = self.payment_method.send_request(self.mbway_provider.key, self.order.number, self.amount.to_f, self.mbway_mobile_number, description)
       if response && response["IdPedido"]
-        self.update_attributes(mbway_request_code: response["IdPedido"])
+        self.update(mbway_request_code: response["IdPedido"])
       end
       response && response["MsgDescricao"]
     else
